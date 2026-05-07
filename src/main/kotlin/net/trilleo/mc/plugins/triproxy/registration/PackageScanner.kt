@@ -102,10 +102,10 @@ object PackageScanner {
                 clazz as Class<out T>
             } else null
         } catch (e: ClassNotFoundException) {
-            plugin.logger.warn("Class not found: $className (missing dependency?)")
+            plugin.logger.warn("Class not found: $className — check that all dependencies are on the classpath")
             null
         } catch (e: NoClassDefFoundError) {
-            plugin.logger.warn("Class definition error for $className (incompatible class format?)")
+            plugin.logger.warn("Class definition error for $className — a dependency present at compile time is missing at runtime: ${e.message}")
             null
         } catch (e: Exception) {
             plugin.logger.warn("Failed to load class $className: [${e.javaClass.simpleName}] ${e.message}")

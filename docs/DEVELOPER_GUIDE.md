@@ -165,15 +165,15 @@ class DisconnectListener : PluginListener() {
 package net.trilleo.mc.plugins.triproxy.listeners.connection
 
 import com.velocitypowered.api.event.Subscribe
-import com.velocitypowered.api.event.connection.LoginEvent
+import com.velocitypowered.api.event.connection.PostLoginEvent
 import net.trilleo.mc.plugins.triproxy.Main
 import net.trilleo.mc.plugins.triproxy.registration.PluginListener
 
-class LoginListener(private val plugin: Main) : PluginListener() {
+class PostLoginListener(private val plugin: Main) : PluginListener() {
 
     @Subscribe
-    fun onLogin(event: LoginEvent) {
-        plugin.logger.info("${event.username} logged in")
+    fun onPostLogin(event: PostLoginEvent) {
+        plugin.logger.info("${event.player.username} joined the network")
     }
 }
 ```
