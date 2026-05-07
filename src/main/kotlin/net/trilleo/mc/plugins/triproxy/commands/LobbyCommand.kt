@@ -4,6 +4,7 @@ import com.velocitypowered.api.command.SimpleCommand
 import com.velocitypowered.api.proxy.ConnectionRequestBuilder.Status
 import com.velocitypowered.api.proxy.Player
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
 import net.trilleo.mc.plugins.triproxy.Main
 import net.trilleo.mc.plugins.triproxy.registration.PluginCommand
 
@@ -23,21 +24,21 @@ class LobbyCommand(private val plugin: Main) : PluginCommand(
         val lobbyServer = plugin.proxy.getServer("lobby")
 
         if (lobbyServer.isEmpty) {
-            source.sendMessage(Component.text("The lobby server is not available."))
+            source.sendMessage(Component.text("The lobby server is not available.").color(NamedTextColor.RED))
             return
         }
 
         val server = lobbyServer.get()
 
         if (source.currentServer.map { it.serverInfo.name == server.serverInfo.name }.orElse(false)) {
-            source.sendMessage(Component.text("You are already on the lobby server."))
+            source.sendMessage(Component.text("You are already on the lobby server.").color(NamedTextColor.GREEN))
             return
         }
 
-        source.sendMessage(Component.text("Connecting you to the lobby..."))
+        source.sendMessage(Component.text("Connecting you to the lobby...").color(NamedTextColor.GREEN))
         source.createConnectionRequest(server).connect().thenAccept { result ->
             if (result.status != Status.SUCCESS) {
-                source.sendMessage(Component.text("Failed to connect to the lobby server."))
+                source.sendMessage(Component.text("Failed to connect to the lobby server.").color(NamedTextColor.RED))
             }
         }
     }
