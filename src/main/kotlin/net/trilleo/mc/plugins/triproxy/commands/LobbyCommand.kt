@@ -1,8 +1,8 @@
 package net.trilleo.mc.plugins.triproxy.commands
 
 import com.velocitypowered.api.command.SimpleCommand
-import com.velocitypowered.api.proxy.Player
 import com.velocitypowered.api.proxy.ConnectionRequestBuilder.Status
+import com.velocitypowered.api.proxy.Player
 import net.kyori.adventure.text.Component
 import net.trilleo.mc.plugins.triproxy.Main
 import net.trilleo.mc.plugins.triproxy.registration.PluginCommand
